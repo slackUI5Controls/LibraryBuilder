@@ -1,9 +1,62 @@
 <mvc:View controllerName="uk.me.seancampbell.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m">
+	xmlns="sap.m" xmlns:core="sap.ui.core">
 	<App>
 		<pages>
 			<Page title="{i18n>title}">
-				<content></content>
+                <headerContent>
+                    <Select>
+                        <items>
+                            <core:Item key="0" text="Complete"/>
+                            <core:Item key="1" text="Experimental"/>
+                        </items>
+                    </Select>
+		        </headerContent>
+				<content>
+                	<SplitContainer id="SplitCont" initialDetail="empty" initialMaster="initialList">
+		<detailPages>
+			<Page id="empty" showHeader="false" class="sapUiStdPage">
+				<content>
+				</content>
+			</Page>
+			<Page id="Overview" title="Control Overview" class="sapUiStdPage" showNavButton="true"
+				  navButtonText="Back" navButtonPress="onPressDetailBack">
+				<content>
+
+				</content>
+			</Page>
+            <Page id="Demo" title="Control Demo" class="sapUiStdPage" showNavButton="true"
+				  navButtonText="Back" navButtonPress="onPressDetailBack">
+				<content>
+					
+				</content>
+			</Page>
+		</detailPages>
+		<masterPages>
+			<Page id="initialList" title="Controls" icon="sap-icon://action" class="sapUiStdPage" showHeader="false">
+				<content>
+					<List>
+						<items>
+							<StandardListItem title="{ControlName}" type="Navigation" press="onPressGoToMaster"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+            <Page id="subList" title="Control Details" icon="sap-icon://action" class="sapUiStdPage">
+                         <headerContent>
+                    <Button text="Back" press="onPressMasterBack"/>
+		        </headerContent>
+				<content>
+					<List>
+						<items>
+							<StandardListItem title="About" type="Navigation" press="onPressOpenDetail"/>
+                            <StandardListItem title="Demo" type="Navigation" press="onPressOpenDetail"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitContainer>
+                </content>
 			</Page>
 		</pages>
 	</App>
