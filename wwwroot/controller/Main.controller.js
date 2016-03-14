@@ -1,9 +1,12 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"uk/me/seancampbell/controller/controller"
 ], function(Controller) {
 	"use strict";
 
 	return Controller.extend("uk.me.seancampbell.controller.Main", {
+        onCollectionSelect : function(oEvt){
+            this.getControls(oEvt.getSource().getSelectedItem().getText().toLowerCase());
+        },
         onPressMasterBack : function() {
 			this.getSplitContObj().backMaster();
 		},

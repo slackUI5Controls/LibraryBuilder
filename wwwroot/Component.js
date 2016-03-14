@@ -18,30 +18,20 @@ sap.ui.define([
 		 */
         init: function() {
             // call the base component's init function
-            UIComponent.prototype.init.apply(this, arguments);
-            var github = new Github({
+            UIComponent.prototype.init.apply(this, arguments);            
+             var github = new Github({
                 username: "emoticrab",
                 password: "minimon11",
                 auth: "basic"
             });
-
-
+            
             var username = "slackUI5Controls"
             var reponame = "CustomControls"
             var repo = github.getRepo(username, reponame);
             
-            repo.contents("experimental", "/", function(err, contents) {
-                console.log(content)
-            });
-            
-            repo.show(function(err, reps) {
-                console.log(reps)
-             });
-
-
-
-
-
+           repo.read("complete", "Controls", $.proxy(function(err, contents) {
+                this.setModel(new sap.ui.model.json.JSONModel({items:contents}),"initialList")
+            },this));
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
         }

@@ -4,7 +4,7 @@
 		<pages>
 			<Page title="{i18n>title}">
                 <headerContent>
-                    <Select>
+                    <Select change="onCollectionSelect">
                         <items>
                             <core:Item key="0" text="Complete"/>
                             <core:Item key="1" text="Experimental"/>
@@ -34,9 +34,9 @@
 		<masterPages>
 			<Page id="initialList" title="Controls" icon="sap-icon://action" class="sapUiStdPage" showHeader="false">
 				<content>
-					<List>
+					<List items="{initialList>/items}">
 						<items>
-							<StandardListItem title="{ControlName}" type="Navigation" press="onPressGoToMaster"/>
+							<StandardListItem title="{initialList>name}" type="Navigation" press="onPressGoToMaster"/>
 						</items>
 					</List>
 				</content>
